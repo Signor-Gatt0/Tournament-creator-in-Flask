@@ -1,6 +1,32 @@
 from math import log2,ceil
 import random
-player_number:int = 7 #TODO
+player1 = {
+    "name":"a",
+    "win":0,
+    "lose":0
+}
+player2 = {
+    "name":"b",
+    "win":0,
+    "lose":0
+}
+player3 = {
+    "name":"c",
+    "win":0,
+    "lose":0
+}
+player4 = {
+    "name":"d",
+    "win":0,
+    "lose":0
+}
+player5 = {
+    "name":"e",
+    "win":0,
+    "lose":0
+}
+
+list_players = [player1,player2,player3,player4,player5]
 
 def calculate_bracket_number(player_number:int) -> int:
     bracket_size:float = 2 ** ceil(log2(player_number))
@@ -9,24 +35,32 @@ def calculate_bracket_number(player_number:int) -> int:
         bracket_size:int = int(bracket_size) + 1
     return bracket_size
 
-def create_battle(list_players):
-    # random.shuffle(list_players)
-    battle = []
-    list_of_battle = []
+def create_battle(list_players) -> list[tuple]:
+    random.shuffle(list_players)
+    
+    list_of_battles = []
 
-# TODO not woking as intended
-    for i in range(len(list_players)):
-        battle.append(list_players[i])
+    bracket_size = calculate_bracket_number(player_number=len(list_players))
+    ris = 0
+    for i in range(bracket_size):
+        if ris >= len(list_players): 
+            break
 
-        if i % 2 == 0:
-            list_of_battle.append(battle)
-            battle = []
+        player1 = list_players[ris]
+        
+        if ris + 1 >= len(list_players):
+            player2 = None
+        else:
+            player2 = list_players[ris + 1]
 
-    print(list_of_battle)
+        ris = ris + 2
+        battle = (player1,player2)
+        list_of_battles.append(battle)
 
-def main(list_players:list):
-    player_number:int = len(list_players)
-    bracket_size = calculate_bracket_number(player_number)
 
-lista = ["A","B","C","D","E","F","G","H","i"]
-create_battle(lista)
+    return list_of_battles
+
+def prepare_bracket(list_players:list):
+    list_of_battles = create_battle(list_players)
+
+    
