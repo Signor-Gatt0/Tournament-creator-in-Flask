@@ -10,3 +10,7 @@ bp = Blueprint('main', __name__)
 @bp.route("/")
 def main_page():
     return render_template("home.html")
+
+@bp.route("/current_tounament")
+def current():
+    return render_template("current.html")

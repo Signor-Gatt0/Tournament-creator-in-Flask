@@ -1,27 +1,9 @@
 from math import log2,ceil
 import random
+
 player1 = {
     "name":"a",
-    "win":0,
-    "lose":0
-}
-player2 = {
-    "name":"b",
-    "win":0,
-    "lose":0
-}
-player3 = {
-    "name":"c",
-    "win":0,
-    "lose":0
-}
-player4 = {
-    "name":"d",
-    "win":0,
-    "lose":0
-}
-player5 = {
-    "name":"e",
+    "winned":False, 
     "win":0,
     "lose":0
 }
@@ -60,7 +42,8 @@ def create_battle(list_players) -> list[tuple]:
 
     return list_of_battles
 
-def prepare_bracket(list_players:list):
+def prepare_bracket(list_players:list) -> list[tuple]:
     list_of_battles = create_battle(list_players)
+    return list_of_battles
 
     
